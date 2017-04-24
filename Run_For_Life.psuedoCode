@@ -1,0 +1,111 @@
+/*
+RuN FoR LiFe
+Disaster Survival Simulation Game
+Demo_Code_For_A_Sample_Scenario
+Team: ThunderStorm
+Nasa Space Apps Challenge 2017
+
+*/
+
+Start:
+    Scenario_01 :
+        Elements_On_The_Screen A_Character_As_User_Role,
+                               A_Chair_With_Character_Sitting_On_It,
+                               A_Table_On_Right,
+                               A_Bed_on_Right_Of_The_Table,
+                               A_Staircase_On_Left_To_Rooftop,
+                               A_DoorWay_Of_Elevator,
+                               A_Window,
+                               A_Chimney_Hanging_From_Ceiling_Straight_Above_Character,
+                               A_Fridger,
+                               An_Electric_Board_On_Wall;
+
+    Scenario_02 : //Earthquake Starts, Screen Trembles
+                Pop_Up_On_Screen "Earthquake!!! What to do now?";
+                input->Decision->Select->An_Element_For_Action();
+                switch(input)
+
+                    Case Select->A_Chair_With_Character_Sitting_On_It:
+                        Decision = "Remain Sitting On Chair";
+                        GoTo Scenario_For_Chair_As_Input;
+
+                    Case Select->A_Bed_on_Right_Of_The_Table:
+                        Decision = "Frightened And Get Under The Blanket";
+                        GoTo Scenario_For_Bed_As_Input;
+
+                    Case Select->A_Staircase_On_Left_To_Rooftop:
+                        Decision = "Run Towards The Roof Top. It's an open space.";
+                        GoTo Scenario_For_Staircase_As_Input;
+
+                    Case Select->A_DoorWay_Of_Elevator:
+                        Decision = "Get on the lift! Going Down floor may give a chance to exit from the DISASTER!";
+                        GoTo Scenario_For_Elevator_As_Input;
+
+                    Case Select->A_Window:
+                        Decision = "Jump out of the window";
+                        GoTo Scenario_For_Window_As_Input;
+
+                    Case Select->A_Table_On_Right:
+                        Decision = "Hide Under The Table";
+                        GoTo Scenario_For_Table_As_Input;
+
+Scenario_For_Chair_As_Input:
+
+        Elements_On_The_Screen The_Broken_Chimney_Fallen_Upon_The_Character,
+                               The_Fallen_Ceiling_Broken_Into_Pieces_All_Over_The_Floor,
+                               The_Character_Dead_Body_Stucked_Under_Broken_Infrastructure;
+        Pop_Up_On_Screen "We and All citizens of the city are mourned by your accidental death! May peace be upon you!";
+        GoTo Replay_Scenario;
+
+Scenario_For_Bed_As_Input:
+
+        Elements_On_The_Screen The_Fallen_Ceiling_Broken_Into_Pieces_Onto_Bed,
+                               The_Character_Dead_Body_Stucked_Under_Broken_Infrastructure;
+        Pop_Up_On_Screen "We and All citizens of the city are mourned by your accidental death! May peace be upon you!";
+        GoTo Replay_Scenario;
+
+Scenario_For_Staircase_As_Input:
+
+        Elements_On_The_Screen The_Building_destroyed_and_broken,
+                               The_Character_Dead_Body_Stucked_Under_Broken_Infrastructure;
+        Pop_Up_On_Screen "We and All citizens of the city are mourned by your accidental death! May peace be upon you!";
+        GoTo Replay_Scenario;
+
+Scenario_For_Elevator_As_Input:
+
+        Elements_On_The_Screen The_Broken_Elevator_With_Torn_Wiring_Caused_By_Quake,
+                               The_Character_Dead_Body_Stucked_Under_Broken_Elevator_Infrastructure;
+        Pop_Up_On_Screen "We and All citizens of the city are mourned by your accidental death! May peace be upon you!";
+        GoTo Replay_Scenario;
+
+Scenario_For_Window_As_Input:
+
+        Elements_On_The_Screen The_Outside_Green_Yard_With_Bloods_Spreaded_On_It,
+                               The_Character_Bloody_Dead_Body_Lying_On_Yard;
+        Pop_Up_On_Screen "We and All citizens of the city are mourned by your accidental death! May peace be upon you!";
+        GoTo Replay_Scenario;
+
+Scenario_For_Table_As_Input:
+
+        Elements_On_The_Screen The_Fallen_Ceiling_Broken_Into_Pieces_Onto_Table_Surface,
+                               The_Character_Alive_Under_Table;
+        Pop_Up_On_Screen "OH Dear! You Survived The Earthquake! Earthquake has stopped by now. Wait for rescue team arrival. Please! stay alive till then!";
+        GoTo Next_Scenario_Gameplay;
+
+Replay_Scenario:
+
+        Option_On_Screen Button_01 = "Replay",
+                         Button_02 = "Home",
+                         Button_03 = "Exit The Game";
+                if(clicked Button_01)
+                    Goto Scenario_01;
+                elseif(clicked Button_02)
+                    Goto Scenario_Home;
+                elseif(clicked Button_03)
+                    Goto End;
+
+
+Next_Scenario_Gameplay:
+        GoTo Next_Scenario();
+
+End:
